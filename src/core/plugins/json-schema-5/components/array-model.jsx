@@ -48,8 +48,18 @@ export default class ArrayModel extends Component {
     */
 
     return <span className="model">
-      <ModelCollapse title={titleEl} expanded={ depth <= expandDepth } collapsedContent="[...]">
-        [
+        []
+          <span>
+            <Model
+              { ...this.props }
+              getConfigs={ getConfigs }
+              specPath={specPath.push("items")}
+              name={null}
+              schema={ items }
+              required={ false }
+              depth={ depth + 1 }
+            />
+          </span>
           {
             properties.size ? properties.entrySeq().map( ( [ key, v ] ) => <Property key={`${key}-${v}`} propKey={ key } propVal={ v } propClass={ propClass } />) : null
           }
@@ -62,19 +72,6 @@ export default class ArrayModel extends Component {
                <Link target="_blank" href={sanitizeUrl(externalDocsUrl)}>{externalDocsDescription || externalDocsUrl}</Link>
              </div>
           }
-          <span>
-            <Model
-              { ...this.props }
-              getConfigs={ getConfigs }
-              specPath={specPath.push("items")}
-              name={null}
-              schema={ items }
-              required={ false }
-              depth={ depth + 1 }
-            />
-          </span>
-        ]
-      </ModelCollapse>
     </span>
   }
 }

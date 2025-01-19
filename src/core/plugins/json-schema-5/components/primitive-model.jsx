@@ -50,7 +50,6 @@ export default class Primitive extends Component {
       </span>
 
     return <span className="model">
-      <ModelCollapse title={titleEl} expanded={depth <= expandDepth} collapsedContent="[...]">
         <span className="prop">
           {name && depth > 1 && <span className="prop-name">{title}</span>}
           <span className="prop-type">{type}</span>
@@ -82,7 +81,6 @@ export default class Primitive extends Component {
             enumArray && <EnumModel value={enumArray} getComponent={getComponent} />
           }
         </span>
-      </ModelCollapse>
     </span>
   }
 }

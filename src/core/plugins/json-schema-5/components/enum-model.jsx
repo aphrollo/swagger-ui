@@ -6,9 +6,7 @@ const EnumModel = ({ value, getComponent }) => {
   let collapsedContent = <span>Array [ { value.count() } ]</span>
   return <span className="prop-enum">
     Enum:<br />
-    <ModelCollapse collapsedContent={ collapsedContent }>
       [ { value.map(String).join(", ") } ]
-    </ModelCollapse>
   </span>
 }
 EnumModel.propTypes = {

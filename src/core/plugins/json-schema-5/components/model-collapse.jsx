@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import PropTypes from "prop-types"
 import ImPropTypes from "react-immutable-proptypes"
 import Im from "immutable"
-
 export default class ModelCollapse extends Component {
   static propTypes = {
     collapsedContent: PropTypes.any,
@@ -20,7 +19,7 @@ export default class ModelCollapse extends Component {
 
   static defaultProps = {
     collapsedContent: "{...}",
-    expanded: false,
+    expanded: true,  // Ensure expanded is true by default
     title: null,
     onToggle: () => {},
     hideSelfOnExpand: false,
@@ -33,14 +32,14 @@ export default class ModelCollapse extends Component {
     let { expanded, collapsedContent } = this.props
 
     this.state = {
-      expanded : expanded,
+      expanded: expanded,  // Set the initial state to expanded (true by default)
       collapsedContent: collapsedContent || ModelCollapse.defaultProps.collapsedContent
     }
   }
 
   componentDidMount() {
     const { hideSelfOnExpand, expanded, modelName } = this.props
-    if(hideSelfOnExpand && expanded) {
+    if (hideSelfOnExpand && expanded) {
       // We just mounted pre-expanded, and we won't be going back..
       // So let's give our parent an `onToggle` call..
       // Since otherwise it will never be called.
@@ -48,15 +47,15 @@ export default class ModelCollapse extends Component {
     }
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps){
-    if(this.props.expanded !== nextProps.expanded){
-        this.setState({expanded: nextProps.expanded})
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (this.props.expanded !== nextProps.expanded) {
+      this.setState({ expanded: nextProps.expanded })
     }
   }
 
-  toggleCollapsed=()=>{
-    if(this.props.onToggle){
-      this.props.onToggle(this.props.modelName,!this.state.expanded)
+  toggleCollapsed = () => {
+    if (this.props.onToggle) {
+      this.props.onToggle(this.props.modelName, !this.state.expanded)
     }
 
     this.setState({
@@ -68,16 +67,16 @@ export default class ModelCollapse extends Component {
     if (ref && this.props.layoutSelectors) {
       const scrollToKey = this.props.layoutSelectors.getScrollToKey()
 
-      if( Im.is(scrollToKey, this.props.specPath) ) this.toggleCollapsed()
+      if (Im.is(scrollToKey, this.props.specPath)) this.toggleCollapsed()
       this.props.layoutActions.readyToScroll(this.props.specPath, ref.parentElement)
     }
   }
 
-  render () {
+  render() {
     const { title, classes } = this.props
 
-    if(this.state.expanded ) {
-      if(this.props.hideSelfOnExpand) {
+    if (this.state.expanded) {
+      if (this.props.hideSelfOnExpand) {
         return <span className={classes || ""}>
           {this.props.children}
         </span>
@@ -87,12 +86,12 @@ export default class ModelCollapse extends Component {
     return (
       <span className={classes || ""} ref={this.onLoad}>
         <button aria-expanded={this.state.expanded} className="model-box-control" onClick={this.toggleCollapsed}>
-          { title && <span className="pointer">{title}</span> }
-          <span className={ "model-toggle" + ( this.state.expanded ? "" : " collapsed" ) }></span>
-          { !this.state.expanded && <span>{this.state.collapsedContent}</span> }
+          {title && <span className="pointer">{title}</span>}
+          <span className={"model-toggle" + (this.state.expanded ? "" : "")}></span>
+          {!this.state.expanded && <span>{this.state.collapsedContent}</span>}
         </button>
 
-        { this.state.expanded && this.props.children }
+        {this.state.expanded && this.props.children}
       </span>
     )
   }
