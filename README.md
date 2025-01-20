@@ -1,3 +1,40 @@
+# <img src="https://avatars.githubusercontent.com/u/121213402?s=108&v=10">
+
+## Updates in `aphrollo/swagger-ui:latest`
+
+    ``` docker run -d -p 8080:8080 aphrollo/swagger-ui:latest ```
+
+### Key Customizations
+
+1. **Dark Mode**
+  
+    The entire interface has been updated to support dark mode for better usability in low-light environments.
+
+
+2. **Model Information Display**
+   
+    **Default Behavior:** Models are expanded with the data type directly visible (e.g., `string`, `number`, `integer`).
+     
+    Previously, these types were hidden behind collapsible areas. This modification improves usability and readability by displaying key information immediately.
+
+      #### Example:
+
+      ```plaintext
+      employees{
+        employee_id* integer($integer) // Primary Key
+        first_name*  string($character varying) // maxLength: 50
+        last_name*   string($character varying) // maxLength: 50
+        email*       string($character varying) // maxLength: 100
+        phone_number string($character varying) // maxLength: 15
+        hire_date*   string($date)
+        salary       number($numeric)
+      }
+      ```
+   
+3. **Containerized Version**
+   
+    A pre-built Docker image with these modifications is available at aphrollo/swagger-ui:latest. This makes it easy to deploy and integrate these features into your existing workflows.
+
 # <img src="https://raw.githubusercontent.com/swagger-api/swagger.io/wordpress/images/assets/SWU-logo-clr.png" width="300">
 
 [![NPM version](https://badge.fury.io/js/swagger-ui.svg)](http://badge.fury.io/js/swagger-ui)
