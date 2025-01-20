@@ -8,7 +8,7 @@
 
 1. **Dark Mode**
   
-    The entire interface has been updated to support dark mode for better usability in low-light environments.
+    The entire interface has been updated to dark mode.
 
 
 2. **Model Information Display**
@@ -33,7 +33,7 @@
    
 3. **Containerized Version**
    
-    A pre-built Docker image with these modifications is available at aphrollo/swagger-ui:latest. This makes it easy to deploy and integrate these features into your existing workflows.
+    A pre-built Docker image with these modifications is available at aphrollo/swagger-ui:latest. 
 
 # <img src="https://raw.githubusercontent.com/swagger-api/swagger.io/wordpress/images/assets/SWU-logo-clr.png" width="300">
 
